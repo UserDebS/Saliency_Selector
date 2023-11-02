@@ -33,16 +33,19 @@ def load_images_from_folder(folder,RGB=True,size = 128):
     return np.array(images)
 
 # %%
-datasets = ["Cars","dog","sky","cultivated land",'cats']
-methods = ['SLIC','Spectral','DL','KMeans','FineGrained']
+datasets = ["Cars","dog","sky","cultivated land"]
+methods = ['SLIC','Spectral','PoolNet','KMeans','FineGrained']
 
 # %%
 ip = input(f"""Which dataset you want to chose:
 1. {datasets[0]}
 2. {datasets[1]}
 3. {datasets[2]}
-4. {datasets[3]}
-5. {datasets[4]}""")
+4. {datasets[3]}\n""")
+
+if(int(ip) > len(datasets)): 
+    print('Please enter a valid input')
+    exit(0)
 
 # %%
 d = datasets[int(ip)-1]
@@ -52,7 +55,7 @@ print(f'Dataset Selected: {d}')
 
 # %%
 def GetSalMaps(d):
-    methods = ['SLIC','Spectral','DL','KMeans','FineGrained']
+    methods = ['SLIC','Spectral','PoolNet','KMeans','FineGrained']
     SaliencyMaps = {}
     for method in methods:
         folder = f"./Saliency/{method}/saliency_{d}"
